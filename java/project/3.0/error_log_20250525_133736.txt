@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "c:/codes/java/project/3.0/gesture_cursor_control2.py", line 78, in <module>
+    pyautogui.moveTo(curr_x * DPI_MULTIPLIER, curr_y * DPI_MULTIPLIER)
+  File "C:\Users\NEXUS\AppData\Local\Programs\Python\Python38\lib\site-packages\pyautogui\__init__.py", line 594, in wrapper
+    returnVal = wrappedFunction(*args, **kwargs)
+  File "C:\Users\NEXUS\AppData\Local\Programs\Python\Python38\lib\site-packages\pyautogui\__init__.py", line 1288, in moveTo
+    _mouseMoveDrag("move", x, y, 0, 0, duration, tween)
+  File "C:\Users\NEXUS\AppData\Local\Programs\Python\Python38\lib\site-packages\pyautogui\__init__.py", line 1514, in _mouseMoveDrag
+    failSafeCheck()
+  File "C:\Users\NEXUS\AppData\Local\Programs\Python\Python38\lib\site-packages\pyautogui\__init__.py", line 1734, in failSafeCheck
+    raise FailSafeException(
+pyautogui.FailSafeException: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.

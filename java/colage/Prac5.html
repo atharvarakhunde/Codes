@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .candidate {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px auto;
+            width: 300px;
+            border-radius: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .vote-btn {
+            background-color: blue;
+            color: white;
+        }
+        .vote-btn:disabled {
+            background-color: gray;
+        }
+        .none-btn {
+            background-color: gray;
+            color: white;
+            margin-top: 10px;
+        }
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Voting Panel</h1>
+    <div id="candidates"></div>
+    <button class="none-btn" onclick="vote('none')">None</button>
+    <p>Total Votes: <span id="voteCount">0</span>/10</p>
+    <button id="resultBtn" onclick="showResults()" disabled>Show Results</button>
+    <div class="results" id="results"></div>
+
+    <script>
+        const candidates = [
+            { id: 1, name: "Candidate A", party: "Party X", symbol: "🔵", votes: 0 },
+            { id: 2, name: "Candidate B", party: "Party Y", symbol: "🔴", votes: 0 },
+            { id: 3, name: "Candidate C", party: "Party Z", symbol: "🟢", votes: 0 }
+        ];
+        let totalVotes = 0;
+        const maxVotes = 10;
+
+        function renderCandidates() {
+            const container = document.getElementById("candidates");
+            container.innerHTML = "";
+            candidates.forEach(candidate => {
+                const div = document.createElement("div");
+                div.className = "candidate";
+                div.innerHTML = `
+                    <div>
+                        <p><strong>${candidate.name}</strong> (${candidate.party})</p>
+                    </div>
+                    <button class="vote-btn" onclick="vote(${candidate.id})">${candidate.symbol}</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function vote(id) {
+            if (totalVotes >= maxVotes) return;
+            if (id !== 'none') {
+                candidates.find(c => c.id === id).votes++;
+            }
+            totalVotes++;
+            document.getElementById("voteCount").innerText = totalVotes;
+            if (totalVotes >= maxVotes) {
+                document.querySelectorAll(".vote-btn, .none-btn").forEach(btn => btn.disabled = true);
+                document.getElementById("resultBtn").disabled = false;
+            }
+        }
+
+        function showResults() {
+            const sortedResults = candidates.slice().sort((a, b) => b.votes - a.votes);
+            const resultDiv = document.getElementById("results");
+            resultDiv.innerHTML = "<h2>Election Results</h2>";
+            sortedResults.forEach((c, index) => {
+                resultDiv.innerHTML += `<p>${index + 1}. ${c.name} (${c.party}) - ${c.votes} votes</p>`;
+            });
+        }
+
+        renderCandidates();
+    </script>
+</body>
+</html>

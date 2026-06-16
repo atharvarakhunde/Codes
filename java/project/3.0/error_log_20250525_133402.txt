@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "c:/codes/java/project/3.0/gesture_cursor_control2.py", line 56, in <module>
+    landmarks_scaled = scaler.transform([landmarks])
+  File "C:\Users\NEXUS\AppData\Local\Programs\Python\Python38\lib\site-packages\sklearn\utils\_set_output.py", line 157, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "C:\Users\NEXUS\AppData\Local\Programs\Python\Python38\lib\site-packages\sklearn\preprocessing\_data.py", line 1006, in transform
+    X = self._validate_data(
+  File "C:\Users\NEXUS\AppData\Local\Programs\Python\Python38\lib\site-packages\sklearn\base.py", line 626, in _validate_data
+    self._check_n_features(X, reset=reset)
+  File "C:\Users\NEXUS\AppData\Local\Programs\Python\Python38\lib\site-packages\sklearn\base.py", line 415, in _check_n_features
+    raise ValueError(
+ValueError: X has 63 features, but StandardScaler is expecting 42 features as input.

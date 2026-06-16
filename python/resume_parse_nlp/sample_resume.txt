@@ -1,0 +1,12 @@
+Name: Rahul Sharma
+Email: rahul@gmail.com
+Phone: 9876543210
+
+Education:
+Bachelor of Engineering in Computer Science
+
+Skills:
+Python, Java, Machine Learning, NLP
+
+Experience:
+Worked as a Software Intern at ABC Company

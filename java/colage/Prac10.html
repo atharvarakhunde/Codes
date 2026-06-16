@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crypt Kicker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col items-center p-6 bg-gray-100 text-center font-sans min-h-screen">
+
+  <h2 class="text-2xl font-bold mb-4">🔐 Crypt Kicker</h2>
+
+  <textarea id="inputText" rows="4" placeholder="Enter your text here..."
+    class="w-72 p-2 rounded border mb-4"></textarea>
+
+  <div class="mb-4">
+    <label class="mr-4"><input type="radio" name="mode" value="encrypt" checked> Encrypt</label>
+    <label><input type="radio" name="mode" value="decrypt"> Decrypt</label>
+  </div>
+
+  <button onclick="processText()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mb-4">
+    Submit
+  </button>
+
+  <div class="w-72 bg-white p-3 rounded shadow">
+    <strong>Result:</strong>
+    <p id="outputText" class="mt-2 break-words text-sm text-gray-700"></p>
+  </div>
+
+  <script>
+    const shift = 3; // Caesar Cipher shift
+
+    function caesar(str, action) {
+      return str.split('').map(char => {
+        const code = char.charCodeAt(0);
+        if (char >= 'A' && char <= 'Z') {
+          const base = 'A'.charCodeAt(0);
+          return String.fromCharCode((code - base + (action === 'encrypt' ? shift : 26 - shift)) % 26 + base);
+        }
+        if (char >= 'a' && char <= 'z') {
+          const base = 'a'.charCodeAt(0);
+          return String.fromCharCode((code - base + (action === 'encrypt' ? shift : 26 - shift)) % 26 + base);
+        }
+        return char;
+      }).join('');
+    }
+
+    function processText() {
+      const text = document.getElementById("inputText").value;
+      const mode = document.querySelector('input[name="mode"]:checked').value;
+      const output = caesar(text, mode);
+      document.getElementById("outputText").textContent = output;
+    }
+  </script>
+
+</body>
+</html>
