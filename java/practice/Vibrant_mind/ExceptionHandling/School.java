@@ -9,9 +9,13 @@ public class School {
             throw r;
     }
     private RuntimeException verify (Student s ){
-        //logic
+        System.out.println(" Verifying the Student "+s);
+        if(s == null){
+            return new RuntimeException("Student not found");
+        }
+        return null;
     }
     private void home (Student s){
-        //show data
+        System.out.println("This is a Home Page .");
     }
 }
